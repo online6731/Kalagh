@@ -1,10 +1,10 @@
 package word.in.news;
 
+import ij.ImagePlus;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -19,11 +19,14 @@ class PictureBox extends Thread{
     PictureBox(JPanel panel) {
         this.panel = panel;
         isRunning = false;
-        JLabel defaultNews = new JLabel(new ImageIcon("‪C:\\Users\\Me\\Desktop\\u1.png"));
+        ImagePlus ip = new ImagePlus();
+        ip.setProcessor(new ImagePlus("a", new ImageIcon("C:\\Users\\Me\\Desktop\\u1.png").getImage()).getProcessor().resize(panel.getWidth(), panel.getHeight()));
+        JLabel defaultNews = new JLabel(new ImageIcon(ip.getImage()));
         frontNewsLabel = defaultNews;
         panel.add(defaultNews);
         defaultNews.setBounds(0, 0, panel.getWidth(), panel.getHeight());
         defaultNews.setVisible(true);
+        
     }
     
     public void setNews(ArrayList<news> news){
@@ -35,10 +38,13 @@ class PictureBox extends Thread{
     public void run(){
         while (isRunning){
             try { 
-                sleep(7000); 
+                sleep(500); 
             } catch (InterruptedException ex) { Logger.getLogger(PictureBox.class.getName()).log(Level.SEVERE, null, ex); }
-            
-            JLabel nextNews = new JLabel(new ImageIcon(news.get(frontNewsNumber).image));
+            ImagePlus ip = new ImagePlus();
+            ip.setProcessor(new ImagePlus("a", new ImageIcon(news.get(frontNewsNumber).image).getImage()).getProcessor().resize(panel.getWidth(), panel.getHeight()));
+            JLabel nextNews = new JLabel(new ImageIcon(ip.getImage()));
+            frontNewsNumber++;
+            frontNewsNumber %= news.size();
             panel.add(nextNews);
             nextNews.setBounds(0, 0, panel.getWidth(), panel.getHeight());
             nextNews.setVisible(true);
