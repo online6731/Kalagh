@@ -10,23 +10,26 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
 
-class PictureBox extends Thread{
+class subjectBox extends Thread{
     JPanel parentPanel;
     JPanel panel;
     ArrayList<news> news = new ArrayList<>();
     boolean isRunning;
     int frontNewsNumber = 0;
-    int textHeight = 30, panelWidth = 300, panelHeight = 150;
+    int textHeight = 30, panelWidth = 100, panelHeight = 100;
     JLabel frontNewsLabel;
     JLabel title;
-    PictureBox(JPanel parentPanel) throws IOException {
+    subjectBox(JPanel parentPanel, String subject) throws IOException {
         this.parentPanel = parentPanel;
-        this.title = new JLabel("اخبار تصویری");
+        this.title = new JLabel(subject);
         this.panel = new JPanel();
         panel.setBounds(0, 0, panelWidth, panelHeight);
+        panel.setSize(panelWidth, panelHeight);
+        
         parentPanel.add(panel);
         panel.setVisible(true);
         panel.setBorder(BorderFactory.createLineBorder(Color.blue, 1));
@@ -57,7 +60,6 @@ class PictureBox extends Thread{
             ImagePlus ip = new ImagePlus();
             ip.setProcessor(new ImagePlus("a", new ImageIcon(news.get(frontNewsNumber).image).getImage()).getProcessor().resize(panelWidth, panelHeight - textHeight));
             frontNewsLabel.setIcon(new ImageIcon(ip.getImage()));
-            title.setText(news.get(frontNewsNumber).title);
             frontNewsNumber++;
             frontNewsNumber %= news.size();
             try { Thread.sleep(5000); } catch (InterruptedException ex) { Logger.getLogger(PictureBox.class.getName()).log(Level.SEVERE, null, ex); }
