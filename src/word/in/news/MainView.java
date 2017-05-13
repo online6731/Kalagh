@@ -19,7 +19,7 @@ public class MainView extends javax.swing.JFrame {
             pictureBox.setNews(WordInNews.getNews(WordInNews.getPage("https://www.tasnimnews.com/fa/rss/feed/8/163/0/عکس")));
         } catch (IOException ex) { Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);}
         pictureBox.start();
-
+        ;
         GridLayout layout = new GridLayout(3, 3);
         subjectPanel.setLayout(layout);
         /*
