@@ -23,41 +23,23 @@ public class View extends javax.swing.JFrame {
 
     public View() {
         initComponents();
-        sportButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                show("http://www.varzesh3.com/rss/all");
-            }
+        sportButton.addActionListener((ActionEvent e) -> {
+            show("http://www.varzesh3.com/rss/all");
         });
-        politicButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                show("http://namehnews.ir/fa/rss/2");
-            }
+        politicButton.addActionListener((ActionEvent e) -> {
+            show("http://namehnews.ir/fa/rss/2");
         });
-        econemyButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                show("http://namehnews.ir/fa/rss/3");
-            }
+        econemyButton.addActionListener((ActionEvent e) -> {
+            show("http://namehnews.ir/fa/rss/3");
         });
-        technologyButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                show("http://namehnews.ir/fa/rss/3");
-            }
+        technologyButton.addActionListener((ActionEvent e) -> {
+            show("http://namehnews.ir/fa/rss/3");
         });
-        photoButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                show("https://www.tasnimnews.com/fa/rss/feed/8/163/0/عکس");
-            }
+        photoButton.addActionListener((ActionEvent e) -> {
+            show("https://www.tasnimnews.com/fa/rss/feed/8/163/0/عکس");
         });
-        musicButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                show("http://musiceiranian.ir/feed");
-            }
+        musicButton.addActionListener((ActionEvent e) -> {
+            show("http://musiceiranian.ir/feed");
         });
     }
     void show (String url){
@@ -73,16 +55,10 @@ public class View extends javax.swing.JFrame {
         DefaultListModel listModel = new DefaultListModel();
         for (news i : allNews) {
             listModel.addElement(i.title);
-            /*if (i.title.contains(word.getText()) ) {
-                listModel.addElement("title : " + i.title + "\t" + 
-                                     "description : " + i.description + "\t" + 
-                                     "author : " + i.author + "\t" + 
-                                     "pubDate : " + i.date);
-            }*/
         }
 
         newsList.addMouseListener(new MouseAdapter() {
-            JFrame jFramel = new JFrame();
+            JFrame jFramel;
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
@@ -95,7 +71,6 @@ public class View extends javax.swing.JFrame {
 
                 }
             }
-            
             @Override
             public void mouseEntered(MouseEvent e) {
                 int selected = newsList.getSelectedIndex();
@@ -104,7 +79,7 @@ public class View extends javax.swing.JFrame {
                         jFramel = new JFrame();
                         jFramel.setVisible(true);
                         jFramel.add(new JLabel(new ImageIcon(allNews.get(selected).image)));
-                        jFramel. setBounds(500, 0 , new ImageIcon(allNews.get(selected).image).getIconWidth(), new ImageIcon(allNews.get(selected).image).getIconHeight());
+                        jFramel.setBounds(500, 0, new ImageIcon(allNews.get(selected).image).getIconWidth(), new ImageIcon(allNews.get(selected).image).getIconHeight());
                         jFramel.setVisible(true);
                     }
                 } catch (Exception ex) {
@@ -114,7 +89,6 @@ public class View extends javax.swing.JFrame {
             @Override
             public void mouseExited(MouseEvent e) {
                 jFramel.setVisible(false);
-                jFramel.removeAll();
             }
         });
         newsList.setModel(listModel);

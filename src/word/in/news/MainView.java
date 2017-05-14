@@ -19,7 +19,7 @@ public class MainView extends javax.swing.JFrame {
             pictureBox.setNews(WordInNews.getNews(WordInNews.getPage("https://www.tasnimnews.com/fa/rss/feed/8/163/0/عکس")));
         } catch (IOException ex) { Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);}
         pictureBox.start();
-        ;
+
         GridLayout layout = new GridLayout(3, 3);
         subjectPanel.setLayout(layout);
         /*
@@ -83,10 +83,8 @@ public class MainView extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(pictureBoxPanel, 288, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(subjectPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pictureBoxPanel, 288, 288, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

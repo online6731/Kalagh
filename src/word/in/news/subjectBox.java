@@ -2,6 +2,7 @@ package word.in.news;
 
 import ij.ImagePlus;
 import java.awt.Color;
+import java.awt.event.MouseAdapter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -10,7 +11,6 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
 
@@ -29,7 +29,6 @@ class subjectBox extends Thread{
         this.panel = new JPanel();
         panel.setBounds(0, 0, panelWidth, panelHeight);
         panel.setSize(panelWidth, panelHeight);
-        
         parentPanel.add(panel);
         panel.setVisible(true);
         panel.setBorder(BorderFactory.createLineBorder(Color.blue, 1));
@@ -42,10 +41,13 @@ class subjectBox extends Thread{
         title.setBounds(0, panelHeight - textHeight, panelWidth, textHeight);
         panel.add(defaultNews);
         panel.add(title);
-        
         title.setHorizontalAlignment(SwingConstants.CENTER);
         frontNewsLabel.setBorder(BorderFactory.createLineBorder(Color.black, 1));
         defaultNews.setVisible(true);
+        
+        panel.addMouseListener(new MouseAdapter() {
+            
+        });
     }
     
     public void setNews(ArrayList<news> news){
